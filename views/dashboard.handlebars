@@ -1,0 +1,53 @@
+{{#extend "main"}}
+
+{{#content "body"}}
+<div class="row">
+    <div class="col-12">
+        <h2 class="my-4">Your Dashboard</h2>
+        <button id="new-post-btn" class="btn btn-primary mb-3">Create New Post</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        {{#if posts.length}}
+            {{#each posts}}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.title}}</h5>
+                        <p class="card-text">{{this.content}}</p>
+                        <a href="/posts/edit/{{this.id}}" class="btn btn-secondary">Edit</a>
+                        <button class="btn btn-danger delete-post" data-id="{{this.id}}">Delete</button>
+                    </div>
+                </div>
+            {{/each}}
+        {{else}}
+            <p>You have not created any posts yet.</p>
+        {{/if}}
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#new-post-btn').on('click', function() {
+            window.location.href = '/posts/new';
+        });
+
+        $('.delete-post').on('click', function() {
+            const postId = $(this).data('id');
+            $.ajax({
+                type: 'DELETE',
+                url: `/api/posts/${postId}`,
+                success: function() {
+                    window.location.reload();
+                },
+                error: function(err) {
+                    console.error('Error deleting post:', err);
+                    alert('Failed to delete post. Please try again.');
+                }
+            });
+        });
+    });
+</script>
+{{/content}}
+
+{{/extend}}
