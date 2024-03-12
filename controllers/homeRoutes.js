@@ -23,6 +23,24 @@ router.get('/', async (req, res) => {
   }
 });
 
-//may need to add more routes later
+// Route to render the login page
+router.get('/login', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
+  }
+  res.render('login');
+});
+
+// Route to render the signup page
+router.get('/signup', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
+  }
+
+  res.render('signup');
+});
+
 
 module.exports = router;
