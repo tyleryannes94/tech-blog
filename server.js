@@ -2,6 +2,8 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const routes = require('./controllers'); 
+
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -32,8 +34,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Import routes
-const routes = require('./controllers'); 
 app.use(routes);
 
 // Sync sequelize models to the database, then start the server
