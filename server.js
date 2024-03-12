@@ -12,7 +12,23 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Set up Handlebars.js as the template engine
-const hbs = exphbs.create({});
+const hbs = exphbs.create({
+  helpers: {
+    extend: function(context, options) {
+      console.log('Extend helper called');
+      return options.fn(context);
+    },
+    content: function(name, options) {
+      if (!this.contents) this.contents = {};
+      this.contents[name] = options.fn(this);
+      return null; 
+    },
+    block: function(name) {
+      return this.contents && this.contents[name] ? this.contents[name] : '';
+    }
+  }
+});
+
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
