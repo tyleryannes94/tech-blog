@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Import routes
-const routes = require('./controllers'); // Adjust the path as necessary for your project structure
+const routes = require('./controllers'); 
 app.use(routes);
 
 // Sync sequelize models to the database, then start the server
