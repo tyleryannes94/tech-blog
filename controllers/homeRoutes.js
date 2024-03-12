@@ -23,6 +23,39 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/dashboard', async (req, res) => {
+  // Check if the user is logged in
+  if (!req.session.logged_in) {
+    res.redirect('/login');
+    return;
+  }
+
+  try {
+    // Fetch posts by the logged-in user
+    const userPostsData = await Post.findAll({
+      where: {
+        userId: req.session.user_id
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
+
+    const posts = userPostsData.map((post) => post.get({ plain: true }));
+
+    res.render('dashboard', {
+      posts,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 // Route to render the login page
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
