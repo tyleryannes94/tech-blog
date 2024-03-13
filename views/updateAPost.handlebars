@@ -1,7 +1,3 @@
-{{#extend "main"}}
-
-{{#block "content"}}
-
 <h2>Edit Post</h2>
 
 <form action="/api/posts/{{post.id}}" method="POST" id="updatePostForm">
@@ -16,7 +12,3 @@
     </div>
     <button type="submit" class="btn btn-primary">Update Post</button>
 </form>
-
-{{/block}}
-
-{{/extend}}
