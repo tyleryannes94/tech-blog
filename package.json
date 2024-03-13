@@ -11,8 +11,8 @@
     "start": "node server.js",
     "watch": "nodemon server.js",
     "resetdb": "mysql -u root -p <  ./db/schema.sql",
-    "seed": "node seeds/index.js",
-    "migrate": "sequelize db:migrate",
+    "migrate": "npx sequelize db:migrate",
+    "seed": "npx sequelize db:seed:all",
     "heroku-postbuild": "npm run migrate && npm run seed"
   },
   "keywords": [],
