@@ -1,20 +1,19 @@
 {
   "name": "tech-blog",
   "version": "1.0.0",
-  "description": "repo for module 14",
+  "description": "A CMS-style blog site built with Node.js and Express",
   "engines": {
     "node": "20.9.0"
   },
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "watch": "nodemon server.js",
-    "resetdb": "mysql -u root -p <  ./db/schema.sql",
-    "seed": "node seeds/index.js"
+    "seed": "node seeds/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["blog", "cms", "node", "express", "sequelize"],
+  "author": "Tyler Yannes",
   "license": "ISC",
   "dependencies": {
     "connect-session-sequelize": "^7.1.7",
@@ -26,5 +25,8 @@
     "mysql": "^2.18.1",
     "mysql2": "^3.9.2",
     "sequelize": "^6.37.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
