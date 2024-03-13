@@ -10,6 +10,10 @@ AS A developer who writes about tech
 I WANT a CMS-style blog site
 SO THAT I can publish articles, blog posts, and my thoughts and opinions
 
+## Showcase
+<img width="1905" alt="Screenshot 2024-03-12 at 11 20 38 PM" src="https://github.com/tyleryannes94/tech-blog/assets/144497240/1903a7bd-c9aa-4974-9475-07cacabcbeef">
+
+
 ## Technologies Used
 
 This project is built using the following technologies:
