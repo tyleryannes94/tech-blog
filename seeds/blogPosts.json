@@ -1,0 +1,13 @@
+[
+    {
+      "title": "Why MVC is Important for Web Development",
+      "content": "MVC allows developers to build scalable and maintainable web applications...",
+      "user_id": 1
+    },
+    {
+      "title": "Understanding Sequelize",
+      "content": "Sequelize is a promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite, and Microsoft SQL Server...",
+      "user_id": 2
+    }
+  ]
+  
