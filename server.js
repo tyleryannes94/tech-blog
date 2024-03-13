@@ -2,32 +2,11 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const path = require('path');
-const routes = require('./controllers');
+const routes = require('./controllers'); 
 
-// Import Sequelize and session store
-const Sequelize = require('sequelize');
+
+const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-
-// Import database configurations
-const env = process.env.NODE_ENV || 'development';
-const config = require('./config/config.js')[env];
-
-// Updated Sequelize initialization with dynamic configuration
-let sequelize;
-if (config.use_env_variable) {
-    sequelize = new Sequelize(process.env[config.use_env_variable], {
-        dialect: config.dialect,
-        protocol: config.protocol, // This might not be necessary but included for completeness
-        dialectOptions: config.dialectOptions,
-    });
-} else {
-    sequelize = new Sequelize(config.database, config.username, config.password, {
-        host: config.host,
-        port: config.port,
-        dialect: config.dialect,
-        dialectOptions: config.dialectOptions,
-    });
-}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -42,12 +21,12 @@ const hbs = exphbs.create({
     content: function(name, options) {
       if (!this.contents) this.contents = {};
       this.contents[name] = options.fn(this);
-      return null;
+      return null; 
     },
     block: function(name) {
       return this.contents && this.contents[name] ? this.contents[name] : '';
-    },
-  },
+    }
+  }
 });
 
 app.engine('handlebars', hbs.engine);
@@ -60,8 +39,8 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize,
-  }),
+    db: sequelize
+  })
 };
 
 app.use(session(sess));
