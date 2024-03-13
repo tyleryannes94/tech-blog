@@ -1,0 +1,46 @@
+
+{{#extend "main"}}
+
+{{#block "content"}}
+
+<article class="post-detail">
+    <header>
+        <h1>{{post.title}}</h1>
+        <div class="post-meta">
+            <span>Posted by {{post.author.username}} on {{formatDate post.createdAt}}</span>
+        </div>
+    </header>
+    <section class="post-content">
+        <p>{{post.content}}</p>
+    </section>
+
+    {{#if post.comments}}
+    <section class="post-comments">
+        <h2>Comments</h2>
+        <ul>
+            {{#each post.comments as |comment|}}
+            <li class="comment">
+                <p>{{comment.content}}</p>
+                <p>— {{comment.author.username}}, {{formatDate comment.createdAt}}</p>
+            </li>
+            {{/each}}
+        </ul>
+    </section>
+    {{else}}
+    <p>No comments yet.</p>
+    {{/if}}
+
+    {{#if loggedIn}}
+    <section class="add-comment">
+        <h2>Leave a Comment</h2>
+        <form action="/api/comments/{{post.id}}" method="POST">
+            <textarea name="commentContent" required placeholder="Type your comment here..."></textarea>
+            <button type="submit">Post Comment</button>
+        </form>
+    </section>
+    {{/if}}
+</article>
+
+{{/block}}
+
+{{/extend}}

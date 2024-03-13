@@ -1,0 +1,22 @@
+{{#extend "main"}}
+
+{{#block "content"}}
+
+<h2>Edit Post</h2>
+
+<form action="/api/posts/{{post.id}}" method="POST" id="updatePostForm">
+    <input type="hidden" name="_method" value="PUT">
+    <div class="form-group">
+        <label for="postTitle">Title</label>
+        <input type="text" id="postTitle" name="title" class="form-control" value="{{post.title}}" required>
+    </div>
+    <div class="form-group">
+        <label for="postContent">Content</label>
+        <textarea id="postContent" name="content" class="form-control" rows="5" required>{{post.content}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Post</button>
+</form>
+
+{{/block}}
+
+{{/extend}}
